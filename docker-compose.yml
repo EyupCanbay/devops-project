@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  pong:
+    container_name: pong-container
+    build:
+      context: ./pong-service
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - PORT=:8081
+      - PING_SERVICE_URL=http://ping:8080/callback
+    networks:
+      - devops-net
+    restart: always
+
+  ping:
+    container_name: ping-container
+    build:
+      context: ./ping-service
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=:8080
+      - PONG_SERVICE_URL=http://pong:8081/receive-ping
+    networks:
+      - devops-net
+    depends_on:
+      - pong
+    restart: always
+
+networks:
+  devops-net:
+    driver: bridge
