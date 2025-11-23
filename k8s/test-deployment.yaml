@@ -4,6 +4,9 @@ kind: Deployment
 metadata:
   name: ping-test
   namespace: test
+  labels:
+    app: ping
+    env: test
 spec:
   replicas: 1
   selector:
@@ -18,7 +21,7 @@ spec:
     spec:
       containers:
         - name: ping
-          image: eyupcanbay/ping-service:ce7fb71c7928f47084abf83cb30089fbf930fc38
+          image: eyupcanbay/ping-service:bb56cb669d7422d9ea1caff2b03dfafaa2c2312a
           resources:
             limits:
               memory: "128Mi"
@@ -40,6 +43,10 @@ kind: Service
 metadata:
   name: ping-test
   namespace: test
+  # 👇👇👇 BURASI EKLENDİ! 👇👇👇
+  labels:
+    app: ping
+  # 👆👆👆 SERVICE MONITOR BUNU ARAR 👆👆👆
 spec:
   selector:
     app: ping
@@ -57,6 +64,9 @@ kind: Deployment
 metadata:
   name: pong-test
   namespace: test
+  labels:
+    app: pong
+    env: test
 spec:
   replicas: 1
   selector:
@@ -71,7 +81,8 @@ spec:
     spec:
       containers:
         - name: pong
-          image: eyupcanbay/pong-service:ce7fb71c7928f47084abf83cb30089fbf930fc38
+          # DÜZELTME: Repo ismi 'pong-service' yapıldı (404 almamak için)
+          image: eyupcanbay/pong-service:bb56cb669d7422d9ea1caff2b03dfafaa2c2312a
           resources:
             limits:
               memory: "128Mi"
@@ -95,6 +106,10 @@ kind: Service
 metadata:
   name: pong-test
   namespace: test
+  # 👇👇👇 BURASI EKLENDİ! 👇👇👇
+  labels:
+    app: pong
+  # 👆👆👆 SERVICE MONITOR BUNU ARAR 👆👆👆
 spec:
   selector:
     app: pong

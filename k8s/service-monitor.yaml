@@ -1,0 +1,29 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: devops-app-monitor
+  namespace: monitoring
+  labels:
+    # --- KRİTİK NOKTA BURASI ---
+    # Helm release ismin 'prom-stack' olduğu için bu etiketi eklemek ZORUNDAYIZ.
+    # Yoksa Prometheus bu dosyayı okumaz.
+    release: prom-stack
+spec:
+  # Hangi servisleri izleyeceğim? (Etiketi 'app: ping' veya 'app: pong' olanlar)
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - ping
+          - pong
+  # Hangi odalara bakacağım?
+  namespaceSelector:
+    matchNames:
+      - production
+      - test
+  # Hangi port ve yoldan veri çekeceğim?
+  endpoints:
+    - port: http-port   # Servis YAML'ında verdiğin port ismi
+      path: /metrics    # Go kodundaki yol
+      interval: 10s     # 10 saniyede bir çek
