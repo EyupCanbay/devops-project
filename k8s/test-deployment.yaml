@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: ping
-          image: eyupcanbay/ping-service:latest
+          image: eyupcanbay/ping-service:ce7fb71c7928f47084abf83cb30089fbf930fc38
           resources:
             limits:
               memory: "128Mi"
@@ -71,7 +71,7 @@ spec:
     spec:
       containers:
         - name: pong
-          image: eyupcanbay/pong-service:latest
+          image: eyupcanbay/pong-service:ce7fb71c7928f47084abf83cb30089fbf930fc38
           resources:
             limits:
               memory: "128Mi"

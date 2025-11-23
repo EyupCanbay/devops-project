@@ -26,4 +26,5 @@ func main() {
 	e.POST("/callback", h.Callback)
 
 	e.Logger.Fatal(e.Start(cfg.PingPort))
+
 }
