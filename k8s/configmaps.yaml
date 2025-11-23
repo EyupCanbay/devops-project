@@ -1,0 +1,24 @@
+# --- PRODUCTION CONFIG ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: production
+data:
+  pong-url: "http://pong-prod.production.svc.cluster.local:8081/receive-ping"
+  ping-url: "http://ping-prod.production.svc.cluster.local:8080/callback"
+  ping-port: ":8080"
+  pong-port: ":8081"
+
+---
+# --- TEST CONFIG ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: test
+data:
+  pong-url: "http://pong-test.test.svc.cluster.local:8081/receive-ping"
+  ping-url: "http://ping-test.test.svc.cluster.local:8080/callback"
+  ping-port: ":8080"
+  pong-port: ":8081"
