@@ -26,11 +26,15 @@ jobs:
         with:
           context: ./ping-service
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/ping-service:latest
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/ping-service:latest
+            ${{ secrets.DOCKER_USERNAME }}/ping-service:${{ github.sha }}
 
       - name: Build and Push Pong Service
         uses: docker/build-push-action@v5
         with:
           context: ./pong-service
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/pong-service:latest
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/pong-service:latest
+            ${{ secrets.DOCKER_USERNAME }}/pong-service:${{ github.sha }}
