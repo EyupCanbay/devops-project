@@ -5,7 +5,7 @@ COPY go.mod ./
 COPY go.sum ./
 RUN go mod tidy
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -o ping-app .
+RUN CGO_ENABLED=0 GOOS=linux go build -o ping-app ./cmd/main.go
 
 FROM alpine:latest
 WORKDIR /root/
