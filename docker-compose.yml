@@ -30,6 +30,13 @@ services:
     depends_on:
       - pong
     restart: always
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/provisioning/dashboards:/var/lib/grafana/dashboards
 
 networks:
   devops-net:
