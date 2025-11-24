@@ -31,11 +31,14 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
         - name: ping
-          image: eyupcanbay/ping-service:38b636b10edf7ed11d1d0059a9abfb39cb1b405a
+          image: eyupcanbay/ping-service:8037decd6e87aa26b7ed2077b18419d3321a2bcf
           resources:
             requests:
               memory: "64Mi"
               cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
           env:
             - name: PORT
               valueFrom:
@@ -99,11 +102,14 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
         - name: pong
-          image: eyupcanbay/pong-service:38b636b10edf7ed11d1d0059a9abfb39cb1b405a
+          image: eyupcanbay/pong-service:8037decd6e87aa26b7ed2077b18419d3321a2bcf
           resources:
             requests:
               memory: "64Mi"
               cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
           env:
             - name: PORT
               valueFrom:

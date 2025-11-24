@@ -12,7 +12,7 @@ import (
 var (
 	httpRequestsTotal = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
-			Name: "http_requests_total",
+			Name: "ping_http_requests_total",
 			Help: "Number of requests received by status code.",
 		},
 		[]string{"path", "method", "status"},
@@ -20,7 +20,7 @@ var (
 
 	httpRequestDuration = prometheus.NewHistogramVec(
 		prometheus.HistogramOpts{
-			Name:    "http_request_duration_seconds",
+			Name:    "ping_http_request_duration_seconds",
 			Help:    "HTTP request duration in seconds.",
 			Buckets: prometheus.DefBuckets, 
 		},
@@ -30,7 +30,7 @@ var (
 
 	inFlightRequests = prometheus.NewGaugeVec(
 		prometheus.GaugeOpts{
-			Name: "http_requests_in_flight",
+			Name: "ping_http_requests_in_flight",
 			Help: "Current number of requests being processed.",
 		},
 		[]string{"path", "method"},
@@ -39,7 +39,7 @@ var (
 
 	DependencyDuration = prometheus.NewHistogramVec(
 		prometheus.HistogramOpts{
-			Name:    "app_dependency_duration_seconds",
+			Name:    "ping_app_dependency_duration_seconds",
 			Help:    "Duration of outgoing requests to other services (Ping->Pong).",
 			Buckets: prometheus.DefBuckets,
 		},

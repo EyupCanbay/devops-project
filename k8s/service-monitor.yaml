@@ -26,4 +26,4 @@ spec:
   endpoints:
     - port: http-port   # Servis YAML'ında verdiğim port ismi
       path: /metrics    # Go kodundaki yol
-      interval: 10s     # 10 saniyede bir çek
+      interval: 1s     # 10 saniyede bir çek

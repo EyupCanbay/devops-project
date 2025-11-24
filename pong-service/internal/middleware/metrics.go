@@ -12,7 +12,7 @@ import (
 var (
 	httpRequestsTotal = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
-			Name: "pong_http_requests_total", // İsim karışmasın diye başına pong_ ekledim (opsiyonel)
+			Name: "pong_http_requests_total", 
 			Help: "Number of requests received by status code.",
 		},
 		[]string{"path", "method", "status"},
