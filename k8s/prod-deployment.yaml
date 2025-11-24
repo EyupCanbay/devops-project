@@ -31,7 +31,7 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
         - name: ping
-          image: eyupcanbay/ping-service:bb56cb669d7422d9ea1caff2b03dfafaa2c2312a
+          image: eyupcanbay/ping-service:38b636b10edf7ed11d1d0059a9abfb39cb1b405a
           resources:
             requests:
               memory: "64Mi"
@@ -53,10 +53,8 @@ kind: Service
 metadata:
   name: ping-prod
   namespace: production
-  # 👇👇👇 BURASI EKLENDİ! 👇👇👇
   labels:
     app: ping
-  # 👆👆👆 SERVICE MONITOR BUNU ARAR 👆👆👆
 spec:
   selector:
     app: ping
@@ -101,7 +99,7 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
         - name: pong
-          image: eyupcanbay/pong-service:bb56cb669d7422d9ea1caff2b03dfafaa2c2312a
+          image: eyupcanbay/pong-service:38b636b10edf7ed11d1d0059a9abfb39cb1b405a
           resources:
             requests:
               memory: "64Mi"
@@ -125,10 +123,8 @@ kind: Service
 metadata:
   name: pong-prod
   namespace: production
-  # 👇👇👇 BURASI EKLENDİ! 👇👇👇
   labels:
     app: pong
-  # 👆👆👆 SERVICE MONITOR BUNU ARAR 👆👆👆
 spec:
   selector:
     app: pong

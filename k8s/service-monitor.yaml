@@ -24,6 +24,6 @@ spec:
       - test
   # Hangi port ve yoldan veri çekeceğim?
   endpoints:
-    - port: http-port   # Servis YAML'ında verdiğin port ismi
+    - port: http-port   # Servis YAML'ında verdiğim port ismi
       path: /metrics    # Go kodundaki yol
       interval: 10s     # 10 saniyede bir çek

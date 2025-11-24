@@ -3,9 +3,13 @@ package handlers
 import (
 	"bytes"
 	"fmt"
-	"github.com/labstack/echo/v4"
 	"net/http"
+	"time"
+
 	"pong-service/internal/config"
+	"pong-service/internal/middleware"
+
+	"github.com/labstack/echo/v4"
 )
 
 type PongHandler struct {
@@ -25,8 +29,15 @@ func (h *PongHandler) ReceivePing(c echo.Context) error {
 }
 
 func (h *PongHandler) sendAckBack() {
+	start := time.Now()
+
 	_, err := http.Post(h.Config.PingURL, "application/json", bytes.NewBuffer([]byte(`{}`)))
+
+	duration := time.Since(start).Seconds()
+
+	middleware.DependencyDuration.WithLabelValues("ping-service", "POST").Observe(duration)
+
 	if err != nil {
-		fmt.Println("[ERROR] Callback failed %v\n", err)
+		fmt.Printf("[ERROR] Callback failed %v\n", err)
 	}
 }

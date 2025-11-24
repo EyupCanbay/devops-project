@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"ping-service/internal/config"
+	"ping-service/internal/middleware"
 
 	"github.com/labstack/echo/v4"
 )
@@ -49,9 +50,16 @@ func (h *PingHandler) runTrafficLoop() {
 }
 
 func (h *PingHandler) sendPing() {
+	start := time.Now()
+
 	resp, err := http.Post(h.Config.PongURL, "application/json", bytes.NewBuffer([]byte("{}")))
+	
+	duration := time.Since(start).Seconds()
+
+	middleware.DependencyDuration.WithLabelValues("pong-service", "POST").Observe(duration)
+
 	if err != nil {
-		fmt.Println("[LOOP] Error sending ping %v\n", err)
+		fmt.Printf("[LOOP] Error sending ping %v\n", err)
 		return
 	}
 	defer resp.Body.Close()
