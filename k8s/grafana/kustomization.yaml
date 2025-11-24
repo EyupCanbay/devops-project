@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Grafana hangi namespace'te ise buraya onu yaz
+namespace: monitoring
+
+# Hangi ConfigMap oluşturulacak?
+configMapGenerator:
+  - name: devops-cluster-dashboard  # ConfigMap adı
+    files:
+      - ping-pong.json         # Yanındaki JSON dosyasının tam adı
+
+# SİHİRLİ KISIM: Oluşan ConfigMap'e otomatik etiket basar
+generatorOptions:
+  disableNameSuffixHash: true # İsmin sonuna rastgele kod ekler (Güncellemeyi garantiler)
+  labels:
+    grafana_dashboard: "1" # Sidecar'ın bunu görmesini sağlayan etiket
