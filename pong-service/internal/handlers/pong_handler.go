@@ -35,7 +35,9 @@ func (h *PongHandler) sendAckBack() {
 
 	duration := time.Since(start).Seconds()
 
-	middleware.DependencyDuration.WithLabelValues("ping-service", "POST").Observe(duration)
+	if middleware.Metrics != nil {
+		middleware.Metrics.DependencyDuration.WithLabelValues("ping-service", "POST").Observe(duration)
+	}
 
 	if err != nil {
 		fmt.Printf("[ERROR] Callback failed %v\n", err)

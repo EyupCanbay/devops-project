@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: ping
-          image: eyupcanbay/ping-service:8037decd6e87aa26b7ed2077b18419d3321a2bcf
+          image: eyupcanbay/ping-service:2cc9a3342f14b8693f81ec84ae18644f2f4e22a4
           resources:
             requests:
               memory: "64Mi"
@@ -82,7 +82,7 @@ spec:
     spec:
       containers:
         - name: pong
-          image: eyupcanbay/pong-service:8037decd6e87aa26b7ed2077b18419d3321a2bcf
+          image: eyupcanbay/pong-service:2cc9a3342f14b8693f81ec84ae18644f2f4e22a4
           resources:
             requests:
                 memory: "64Mi"

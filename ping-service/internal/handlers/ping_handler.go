@@ -56,8 +56,9 @@ func (h *PingHandler) sendPing() {
 	
 	duration := time.Since(start).Seconds()
 
-	middleware.DependencyDuration.WithLabelValues("pong-service", "POST").Observe(duration)
-
+	if middleware.Metrics != nil {
+		middleware.Metrics.DependencyDuration.WithLabelValues("pong-service", "POST").Observe(duration)
+	}
 	if err != nil {
 		fmt.Printf("[LOOP] Error sending ping %v\n", err)
 		return
